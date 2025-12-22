@@ -1,73 +1,40 @@
-# React + TypeScript + Vite
+# 🎟️ EventCart - Ticket Purchase Flow
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> Um simulador de fluxo de compra de ingressos focado em **Gestão de Estado Crítico** e **Tipagem Segura**.
 
-Currently, two official plugins are available:
+![Project Status](https://img.shields.io/badge/Status-In%20Development-yellow) ![React](https://img.shields.io/badge/React-18-blue) ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue) ![Zustand](https://img.shields.io/badge/State-Zustand-orange)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🎯 Objetivo
 
-## React Compiler
+Demonstrar a implementação de um carrinho de compras performático e seguro, simulando desafios reais de plataformas de ingressos (como BaladAPP/Ticketmaster), onde a integridade dos dados financeiros (preço/quantidade) é prioritária.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Stack & Decisões Técnicas
 
-## Expanding the ESLint configuration
+| Tecnologia               | Por que foi escolhida?                                                                                                                |
+| :----------------------- | :------------------------------------------------------------------------------------------------------------------------------------ |
+| **React + TypeScript**   | Garantia de integridade de dados (preços sempre numéricos) e DX superior.                                                             |
+| **Zustand**              | Gerenciamento de estado global minimalista para evitar _prop drilling_ entre Lista de Eventos e Carrinho, sem a verbosidade do Redux. |
+| **CSS Modules / Inline** | Estilização escopada e ágil para focar na lógica de negócio.                                                                          |
+| **Vite**                 | Build tool moderna para feedback instantâneo durante o desenvolvimento.                                                               |
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🚀 Funcionalidades Atuais
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- [x] **Listagem de Eventos**: Renderização dinâmica baseada em mocks tipados.
+- [x] **Carrinho Inteligente**: Lógica para adicionar/remover e calcular totais em tempo real.
+- [x] **UX Resiliente**: Fallback automático para imagens quebradas (sem exibir ícones de erro).
+- [x] **Tipagem Estrita**: Interfaces `Event`, `CartItem` e `CartState` para blindar o código.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🧠 Lições Aprendidas (Highlights)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1. **Zustand vs Context API**: O uso do Zustand simplificou a lógica de `selectors`, evitando re-renderizações desnecessárias que ocorreriam com Context API nativa em um carrinho complexo.
+2. **Fallback de Imagem**: Implementação de um `useState` local no componente `EventCard` para gerenciar erros de carregamento de imagem de forma graciosa.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🔜 Próximos Passos
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Implementação de Testes E2E com **Playwright**.
+- Persistência de carrinho no `localStorage`.
+- Melhorias de Acessibilidade (a11y).
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+
+Desenvolvido por [Vinicius](https://www.linkedin.com/in/vinicius-m-m-7822/)
