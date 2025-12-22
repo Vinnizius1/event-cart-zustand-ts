@@ -1,0 +1,29 @@
+/* src/index.css */
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  --color-bg: #0f172a; /* Azul Escuro Profundo */
+  --color-card: #1e293b; /* Azul/Cinza para cards */
+  --color-text: #f8fafc; /* Branco Suave */
+  --color-primary: #ec4899; /* Rosa Choque (Estilo BaladApp) */
+  --color-primary-hover: #db2777;
+  --color-border: #334155;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button {
+  cursor: pointer;
+}
