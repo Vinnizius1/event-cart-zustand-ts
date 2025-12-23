@@ -37,4 +37,4 @@ Demonstrar a implementação de um carrinho de compras performático e seguro, s
 
 ---
 
-Desenvolvido por [Vinicius](https://www.linkedin.com/in/vinicius-m-m-7822/)
+Desenvolvido por [Vinicius](https://www.linkedin.com/in/vinmm/)
