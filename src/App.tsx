@@ -28,69 +28,27 @@ function App() {
         ))}
       </div>
 
-      {/* DRAWER / CARRINHO LATERAL (Bem simples por enquanto) */}
+      {/* DRAWER / CARRINHO LATERAL */}
       {isOpen && (
-        <div
-          style={{
-            position: "fixed",
-            top: 0,
-            right: 0,
-            width: "400px",
-            height: "100%",
-            background: "#1e293b",
-            boxShadow: "-5px 0 15px rgba(0,0,0,0.5)",
-            padding: "20px",
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              marginBottom: "20px",
-            }}
-          >
+        <div className={styles.drawer}>
+          <div className={styles.drawerHeader}>
             <h2>Seu Carrinho</h2>
-            <button
-              onClick={toggleCart}
-              style={{
-                background: "transparent",
-                border: "none",
-                color: "white",
-                fontSize: "20px",
-              }}
-            >
+            <button onClick={toggleCart} className={styles.closeButton}>
               ✕
             </button>
           </div>
 
-          <div style={{ flex: 1, overflowY: "auto" }}>
+          <div className={styles.cartItemsList}>
             {items.length === 0 ? (
-              <p style={{ color: "#94a3b8", textAlign: "center" }}>
+              <p className={styles.emptyCartMessage}>
                 Seu carrinho está vazio.
               </p>
             ) : (
               items.map((item) => (
-                <div
-                  key={item.id}
-                  style={{
-                    background: "#0f172a",
-                    padding: "15px",
-                    borderRadius: "8px",
-                    marginBottom: "10px",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                  }}
-                >
+                <div key={item.id} className={styles.cartItem}>
                   <div>
-                    <p style={{ margin: "0 0 5px 0", fontWeight: "bold" }}>
-                      {item.title}
-                    </p>
-                    <p
-                      style={{ margin: 0, fontSize: "14px", color: "#94a3b8" }}
-                    >
+                    <p className={styles.cartItemTitle}>{item.title}</p>
+                    <p className={styles.cartItemInfo}>
                       {item.quantity}x{" "}
                       {new Intl.NumberFormat("pt-BR", {
                         style: "currency",
@@ -100,13 +58,7 @@ function App() {
                   </div>
                   <button
                     onClick={() => removeFromCart(item.id)}
-                    style={{
-                      background: "transparent",
-                      border: "1px solid #ef4444",
-                      color: "#ef4444",
-                      borderRadius: "4px",
-                      padding: "5px 10px",
-                    }}
+                    className={styles.removeItemButton}
                   >
                     Remover
                   </button>
@@ -115,21 +67,8 @@ function App() {
             )}
           </div>
 
-          <div
-            style={{
-              borderTop: "1px solid var(--color-border)",
-              paddingTop: "20px",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                fontSize: "20px",
-                fontWeight: "bold",
-                marginBottom: "20px",
-              }}
-            >
+          <div className={styles.drawerFooter}>
+            <div className={styles.totalSection}>
               <span>Total:</span>
               <span>
                 {new Intl.NumberFormat("pt-BR", {
@@ -138,18 +77,7 @@ function App() {
                 }).format(totalPrice())}
               </span>
             </div>
-            <button
-              style={{
-                width: "100%",
-                background: "#22c55e",
-                border: "none",
-                color: "white",
-                padding: "15px",
-                borderRadius: "8px",
-                fontSize: "18px",
-                fontWeight: "bold",
-              }}
-            >
+            <button className={styles.checkoutButton}>
               Finalizar Compra
             </button>
           </div>
