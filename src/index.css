@@ -1,9 +1,13 @@
-/* src/index.css */
+/* src/index.css: Estilos globais e variáveis. Importado em main.tsx para aplicar a toda a aplicação. */
+
+/* :root é usado para declarar variáveis CSS globais (custom properties) e fontes padrão. */
 :root {
+  /* Font stack: Tenta usar "Inter" (se instalada no sistema), senão, a fonte padrão do sistema, garantindo boa performance e consistência visual sem a necessidade de importação externa. */
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
+  /* Paleta de cores da aplicação */
   --color-bg: #0f172a; /* Azul Escuro Profundo */
   --color-card: #1e293b; /* Azul/Cinza para cards */
   --color-text: #f8fafc; /* Branco Suave */
@@ -12,6 +16,7 @@
   --color-border: #334155;
 }
 
+/* body define os padrões de fundo e cor de texto que são herdados por elementos filhos. */
 body {
   margin: 0;
   min-width: 320px;
@@ -20,6 +25,7 @@ body {
   color: var(--color-text);
 }
 
+/* O seletor universal (*) é usado para aplicar um reset de box-sizing, facilitando o layout. */
 * {
   box-sizing: border-box;
 }
