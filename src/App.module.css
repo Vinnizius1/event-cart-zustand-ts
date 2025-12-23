@@ -1,0 +1,39 @@
+/* src/App.module.css */
+.appContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.header h1 {
+  color: var(--color-primary);
+}
+
+.cartButton {
+  background: var(--color-card);
+  border: 1px solid var(--color-primary);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: background-color 0.2s;
+}
+.cartButton:hover {
+  background-color: var(--color-border);
+}
+
+
+.eventsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  /* O "molde" das linhas que os filhos (cards) vão herdar */
+  grid-template-rows: 200px auto auto 1fr auto;
+}

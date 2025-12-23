@@ -1,0 +1,84 @@
+/* src/components/EventCard.module.css */
+.card {
+  /* Herda o grid do pai e ocupa 5 linhas */
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 5;
+
+  background: var(--color-card);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.cardImage {
+  grid-row: 1; /* Coloca na linha 1 */
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.titleSection {
+  grid-row: 2; /* Coloca na linha 2 */
+  padding: 20px 20px 0 20px;
+}
+
+.titleSection h3 {
+  margin: 0 0 10px 0;
+}
+
+.errorText {
+  color: #f97316;
+  font-size: 12px;
+}
+
+.detailsSection {
+  grid-row: 3; /* Coloca na linha 3 */
+  padding: 0 20px;
+}
+
+.detailsSection p {
+  color: #94a3b8;
+  font-size: 14px;
+  margin: 0 0 5px 0;
+}
+
+/* A linha 4 do grid é o espaço vazio que empurra o footer */
+
+.footer {
+  grid-row: 5; /* Coloca na linha 5 */
+  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-top: 1px solid var(--color-border);
+
+  /* Garante que o footer fique "colado" no fundo da sua célula de grid */
+  margin-top: auto; 
+}
+
+.price {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.buyButton {
+  background: var(--color-primary);
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.buyButton:hover {
+  background-color: var(--color-primary-hover);
+}

@@ -2,6 +2,7 @@
 import { EVENTS } from "./data/mockEvents";
 import { useCartStore } from "./store/useCartStore";
 import { EventCard } from "./components/EventCard";
+import styles from "./App.module.css"; // Importa o CSS Module
 
 function App() {
   // Puxamos as ações e estado da nossa Store
@@ -11,41 +12,17 @@ function App() {
   const totalItems = items.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
-    <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "20px" }}>
+    <div className={styles.appContainer}>
       {/* HEADER */}
-      <header
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginBottom: "40px",
-        }}
-      >
-        <h1 style={{ color: "var(--color-primary)" }}>EventCart 🎟️</h1>
-        <button
-          onClick={toggleCart}
-          style={{
-            background: "var(--color-card)",
-            border: "1px solid var(--color-primary)",
-            color: "white",
-            padding: "10px 20px",
-            borderRadius: "8px",
-            fontSize: "16px",
-          }}
-        >
+      <header className={styles.header}>
+        <h1>EventCart 🎟️</h1>
+        <button onClick={toggleCart} className={styles.cartButton}>
           🛒 Carrinho ({totalItems})
         </button>
       </header>
 
       {/* GRID DE EVENTOS */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-          gap: "20px",
-          gridTemplateRows: "200px auto auto 1fr auto",
-        }}
-      >
+      <div className={styles.eventsGrid}>
         {EVENTS.map((event) => (
           <EventCard key={event.id} event={event} />
         ))}
