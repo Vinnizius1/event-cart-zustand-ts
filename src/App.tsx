@@ -43,6 +43,7 @@ function App() {
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
           gap: "20px",
+          gridTemplateRows: "200px auto auto 1fr auto",
         }}
       >
         {EVENTS.map((event) => (
