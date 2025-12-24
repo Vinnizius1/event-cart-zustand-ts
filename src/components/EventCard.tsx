@@ -1,8 +1,7 @@
-// src/components/EventCard.tsx
 import { useState } from "react";
 import type { Event } from "../types";
 import { useCartStore } from "../store/useCartStore";
-import styles from "./EventCard.module.css"; // Importa o CSS Module
+import styles from "./EventCard.module.css";
 
 interface EventCardProps {
   event: Event;

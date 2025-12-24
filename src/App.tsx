@@ -43,7 +43,6 @@ function App() {
       {/* Renders a grid of events by mapping over our static data. */}
       <main className={styles.eventsGrid}>
         {EVENTS.map((event) => (
-          // `key` is crucial for React's reconciliation algorithm to efficiently update the list.
           <EventCard key={event.id} event={event} />
         ))}
       </main>
@@ -91,13 +90,9 @@ function App() {
           <div className={styles.drawerFooter}>
             <div className={styles.totalSection}>
               <span>Total:</span>
-              <span>
-                {formatCurrency(totalPrice())}
-              </span>
+              <span>{formatCurrency(totalPrice())}</span>
             </div>
-            <button className={styles.checkoutButton}>
-              Finalizar Compra
-            </button>
+            <button className={styles.checkoutButton}>Finalizar Compra</button>
           </div>
         </aside>
       )}
