@@ -1,0 +1,11 @@
+.eventsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+@media (max-width: 400px) {
+  .eventsGrid {
+    grid-template-columns: minmax(50%, 1fr);
+  }
+}

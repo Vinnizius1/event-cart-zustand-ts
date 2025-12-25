@@ -12,7 +12,7 @@
 
 import { EventCard } from "./EventCard";
 import type { Event } from "../types";
-import styles from "../App.module.css";
+import styles from "./EventsList.module.css";
 
 interface EventsListProps {
   events: Event[];

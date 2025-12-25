@@ -13,7 +13,7 @@
 
 import type { CartItem } from "../types";
 import { CurrencyService } from "../services/CurrencyService";
-import styles from "../App.module.css";
+import styles from "./CartDrawer.module.css";
 
 interface CartDrawerProps {
   isOpen: boolean;
