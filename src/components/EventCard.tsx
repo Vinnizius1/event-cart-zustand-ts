@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { Event } from "../types";
 import { useCartStore } from "../store/useCartStore";
+import { CurrencyService } from "../services/CurrencyService";
 import styles from "./EventCard.module.css";
 
 interface EventCardProps {
@@ -43,10 +44,7 @@ export function EventCard({ event }: EventCardProps) {
 
       <div className={styles.footer}>
         <span className={styles.price}>
-          {new Intl.NumberFormat("pt-BR", {
-            style: "currency",
-            currency: "BRL",
-          }).format(event.price)}
+          {CurrencyService.format(event.price)}
         </span>
         <button onClick={() => addToCart(event)} className={styles.buyButton}>
           Comprar

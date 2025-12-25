@@ -1,101 +1,61 @@
 // --- Core Dependencies & Style ---
-import styles from "./App.module.css"; // CSS Modules for component-scoped styling.
+import styles from "./App.module.css";
 
-// --- Components & Data ---
-import { EventCard } from "./components/EventCard";
-import { EVENTS } from "./data/mockEvents"; // Static data source for events.
+// --- Components ---
+import { EventsList } from "./components/EventsList";
+import { CartDrawer } from "./components/CartDrawer";
 
-// --- State Management ---
-import { useCartStore } from "./store/useCartStore"; // Zustand store hook for global state.
+// --- Data ---
+import { EVENTS } from "./data/mockEvents";
 
-// Currency formatter for Brazilian Real
-const formatCurrency = (value: number) =>
-  new Intl.NumberFormat("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-  }).format(value);
+// --- Facade & Services ---
+import { useCartFacade } from "./facade/CartFacade";
 
 /**
- * App is the root component, responsible for the main layout and orchestrating
- * the primary user interactions with the event list and shopping cart.
+ * App - Componente Orquestrador (Container Component)
+ *
+ * RESPONSABILIDADES:
+ * - Renderizar layout principal (header, main, aside)
+ * - Orquestrar componentes filhos
+ * - Gerenciar estado através do Facade
+ *
+ * NÃO FAZ:
+ * - Cálculos complexos
+ * - Formatação de dados
+ * - Lógica de negócio específica
+ *
+ * PADRÕES APLICADOS:
+ * - Container/Presentational Pattern
+ * - Facade Pattern (CartFacade abstrai complexidade)
+ * - Separation of Concerns
  */
 function App() {
-  // Destructure actions and state from our global store.
-  // This hook ensures the component re-renders only when these specific values change.
-  const { items, toggleCart, isOpen, removeFromCart, totalPrice } =
-    useCartStore();
-
-  // Derived state: Calculated on every render.
-  // Cheaper than storing in state, as it doesn't trigger extra re-renders.
-  const totalItems = items.reduce((acc, item) => acc + item.quantity, 0);
+  // Uma única source of truth para lógica do carrinho
+  const cart = useCartFacade();
 
   return (
     <div className={styles.appContainer}>
-      {/* --- HEADER --- */}
+      {/* --- HEADER: Título e Botão do Carrinho --- */}
       <header className={styles.header}>
         <h1>EventCart 🎟️</h1>
-        <button onClick={toggleCart} className={styles.cartButton}>
-          🛒 Carrinho ({totalItems})
+        <button onClick={cart.toggleCart} className={styles.cartButton}>
+          🛒 Carrinho ({cart.getTotalItems()})
         </button>
       </header>
 
-      {/* --- EVENT LIST --- */}
-      {/* Renders a grid of events by mapping over our static data. */}
-      <main className={styles.eventsGrid}>
-        {EVENTS.map((event) => (
-          <EventCard key={event.id} event={event} />
-        ))}
-      </main>
+      {/* --- MAIN: Lista de Eventos --- */}
+      {/* Componente especializado em renderizar eventos */}
+      <EventsList events={EVENTS} />
 
-      {/* --- SHOPPING CART DRAWER --- */}
-      {/* Conditional rendering: The drawer is only in the DOM when `isOpen` is true. */}
-      {isOpen && (
-        <aside className={styles.drawer}>
-          <div className={styles.drawerHeader}>
-            <h2>Seu Carrinho</h2>
-            <button onClick={toggleCart} className={styles.closeButton}>
-              ✕
-            </button>
-          </div>
-
-          <div className={styles.cartItemsList}>
-            {items.length === 0 ? (
-              <p className={styles.emptyCartMessage}>
-                Seu carrinho está vazio.
-              </p>
-            ) : (
-              items.map((item) => (
-                <div key={item.id} className={styles.cartItem}>
-                  <div>
-                    <p className={styles.cartItemTitle}>{item.title}</p>
-                    <p className={styles.cartItemInfo}>
-                      {item.quantity}x{" "}
-                      {/* Use Intl API for robust, locale-aware currency formatting. */}
-                      {formatCurrency(item.price)}
-                    </p>
-                  </div>
-                  {/* We use an arrow function in onClick to defer execution and pass the item.id. */}
-                  <button
-                    onClick={() => removeFromCart(item.id)}
-                    className={styles.removeItemButton}
-                  >
-                    Remover
-                  </button>
-                </div>
-              ))
-            )}
-          </div>
-
-          {/* --- CART FOOTER & CHECKOUT --- */}
-          <div className={styles.drawerFooter}>
-            <div className={styles.totalSection}>
-              <span>Total:</span>
-              <span>{formatCurrency(totalPrice())}</span>
-            </div>
-            <button className={styles.checkoutButton}>Finalizar Compra</button>
-          </div>
-        </aside>
-      )}
+      {/* --- DRAWER: Carrinho de Compras --- */}
+      {/* Componente especializado em renderizar o carrinho */}
+      <CartDrawer
+        isOpen={cart.isCartOpen}
+        items={cart.items}
+        totalPrice={cart.getTotalPrice()}
+        onClose={cart.toggleCart}
+        onRemoveItem={cart.removeItem}
+      />
     </div>
   );
 }
