@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { Event } from "../types";
-import { useCartStore } from "../store/useCartStore";
+import { useCartFacade } from "../facade/CartFacade";
 import { CurrencyService } from "../services/CurrencyService";
 import styles from "./EventCard.module.css";
 
@@ -10,7 +10,7 @@ interface EventCardProps {
 
 export function EventCard({ event }: EventCardProps) {
   const [hasImageError, setHasImageError] = useState(false);
-  const { addToCart } = useCartStore();
+  const { addItem } = useCartFacade();
 
   return (
     <div className={styles.card}>
@@ -46,7 +46,7 @@ export function EventCard({ event }: EventCardProps) {
         <span className={styles.price}>
           {CurrencyService.format(event.price)}
         </span>
-        <button onClick={() => addToCart(event)} className={styles.buyButton}>
+        <button onClick={() => addItem(event)} className={styles.buyButton}>
           Comprar
         </button>
       </div>
