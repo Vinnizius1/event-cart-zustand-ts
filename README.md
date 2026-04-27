@@ -2,7 +2,7 @@
 
 > Um simulador de fluxo de compra de ingressos focado em **Gestão de Estado Crítico** e **Tipagem Segura**.
 
-![Project Status](https://img.shields.io/badge/Status-In%20Development-yellow) ![React](https://img.shields.io/badge/React-18-blue) ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue) ![Zustand](https://img.shields.io/badge/State-Zustand-orange)
+![Project Status](https://img.shields.io/badge/Status-In%20Development-yellow) ![React](https://img.shields.io/badge/React-19-blue) ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue) ![Zustand](https://img.shields.io/badge/State-Zustand-orange)
 
 ## 🎯 Objetivo
 
@@ -13,6 +13,7 @@ Demonstrar a implementação de um carrinho de compras performático e seguro, s
 | Tecnologia               | Por que foi escolhida?                                                                                                                |
 | :----------------------- | :------------------------------------------------------------------------------------------------------------------------------------ |
 | **React + TypeScript**   | Garantia de integridade de dados (preços sempre numéricos) e DX superior.                                                             |
+| **Design Patterns**      | Facade Pattern (CartFacade), Container/Presentational, Service Layer                                                                  |
 | **Zustand**              | Gerenciamento de estado global minimalista para evitar _prop drilling_ entre Lista de Eventos e Carrinho, sem a verbosidade do Redux. |
 | **CSS Modules / Inline** | Estilização escopada e ágil para focar na lógica de negócio.                                                                          |
 | **Vite**                 | Build tool moderna para feedback instantâneo durante o desenvolvimento.                                                               |
@@ -28,6 +29,12 @@ Demonstrar a implementação de um carrinho de compras performático e seguro, s
 
 1. **Zustand vs Context API**: O uso do Zustand simplificou a lógica de `selectors`, evitando re-renderizações desnecessárias que ocorreriam com Context API nativa em um carrinho complexo.
 2. **Fallback de Imagem**: Implementação de um `useState` local no componente `EventCard` para gerenciar erros de carregamento de imagem de forma graciosa.
+
+## 🧪 Testes
+
+- **33 testes** cobrindo store, serviços e componentes
+- Ferramentas: **Vitest** + **React Testing Library**
+- Rodar: `npm test`
 
 ## 🔜 Próximos Passos
 
