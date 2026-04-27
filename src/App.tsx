@@ -4,6 +4,7 @@ import styles from "./App.module.css";
 // --- Components ---
 import { EventsList } from "./components/EventsList";
 import { CartDrawer } from "./components/CartDrawer";
+import { ErrorBoundary } from "./components/ErrorBoundary";
 
 // --- Data ---
 import { EVENTS } from "./data/mockEvents";
@@ -34,29 +35,39 @@ function App() {
   const cart = useCartFacade();
 
   return (
-    <div className={styles.appContainer}>
-      {/* --- HEADER: Título e Botão do Carrinho --- */}
-      <header className={styles.header}>
-        <h1>EventCart 🎟️</h1>
-        <button onClick={cart.toggleCart} className={styles.cartButton}>
-          🛒 Carrinho ({cart.getTotalItems()})
-        </button>
-      </header>
+    <ErrorBoundary
+      fallback={
+        <div className={styles.errorFullPage}>
+          Erro crítico ao carregar o sistema.
+        </div>
+      }
+    >
+      <div className={styles.appContainer}>
+        {/* --- HEADER --- */}
+        <header className={styles.header}>
+          <h1>EventCart 🎟️</h1>
+          <button onClick={cart.toggleCart} className={styles.cartButton}>
+            🛒 Carrinho ({cart.getTotalItems()})
+          </button>
+        </header>
 
-      {/* --- MAIN: Lista de Eventos --- */}
-      {/* Componente especializado em renderizar eventos */}
-      <EventsList events={EVENTS} />
+        {/* --- MAIN --- */}
+        <main>
+          <ErrorBoundary fallback={<p>Erro ao carregar a lista de eventos.</p>}>
+            <EventsList events={EVENTS || []} />
+          </ErrorBoundary>
+        </main>
 
-      {/* --- DRAWER: Carrinho de Compras --- */}
-      {/* Componente especializado em renderizar o carrinho */}
-      <CartDrawer
-        isOpen={cart.isCartOpen}
-        items={cart.items}
-        totalPrice={cart.getTotalPrice()}
-        onClose={cart.toggleCart}
-        onRemoveItem={cart.removeItem}
-      />
-    </div>
+        {/* --- DRAWER --- */}
+        <CartDrawer
+          isOpen={cart.isCartOpen}
+          items={cart.items}
+          totalPrice={cart.getTotalPrice()}
+          onClose={cart.toggleCart}
+          onRemoveItem={cart.removeItem}
+        />
+      </div>
+    </ErrorBoundary>
   );
 }
 

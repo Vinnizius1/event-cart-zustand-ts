@@ -15,6 +15,7 @@
 import { useCartStore } from "../store/useCartStore";
 
 export const useCartFacade = () => {
+  // Obtém o estado e ações do Zustand
   const store = useCartStore();
 
   return {

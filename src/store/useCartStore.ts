@@ -4,7 +4,8 @@ import type { CartState } from "../types";
 
 /* Antes era "import { CartState } from "../types";" e dava erro. */
 /* Por que isso acontece?
-Quando o código é transpilado (transformado de TS para JS), o JavaScript final "apaga" tudo que é tipagem, pois o navegador não entende interfaces.
+Quando o código é transpilado (transformado de TS para JS), 
+o JavaScript final "apaga" tudo que é tipagem, pois o navegador não entende interfaces.
 Ao usar import type, você diz ao compilador: 
 "Ei, isso aqui é só pro meu desenvolvimento, pode apagar essa linha quando for gerar o JS final". 
 Isso deixa o código final mais leve e evita erros de referência circular. */
@@ -31,7 +32,7 @@ export const useCartStore = create<CartState>((set, get) => ({
           items: state.items.map((item) =>
             item.id === event.id
               ? { ...item, quantity: item.quantity + 1 }
-              : item
+              : item,
           ),
         };
       }

@@ -4,8 +4,6 @@
 
 Este arquivo ajuda você a navegar pela documentação e código do projeto refatorado.
 
----
-
 ## 📖 Documentação (Por Tipo)
 
 ### 🚀 Comece Aqui (Primeiras Leituras)

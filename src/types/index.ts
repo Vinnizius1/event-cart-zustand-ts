@@ -16,6 +16,7 @@ export interface CartItem extends Event {
 }
 
 // Define o formato da nossa "Store" (o estado global do Zustand)
+// "Store" é onde guardamos o estado do carrinho e as ações para modificá-lo
 export interface CartState {
   items: CartItem[];
   isOpen: boolean; // O carrinho está aberto ou fechado?
