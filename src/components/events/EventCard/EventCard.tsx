@@ -1,7 +1,7 @@
 import { useState } from "react";
-import type { Event } from "../../../types";
-import { useCartFacade } from "../../../facade/CartFacade";
-import { CurrencyService } from "../../../services/CurrencyService";
+import type { Event } from "@/types";
+import { useCartFacade } from "@/facade/CartFacade";
+import { CurrencyService } from "@/services/CurrencyService";
 import styles from "./EventCard.module.css";
 
 interface EventCardProps {
