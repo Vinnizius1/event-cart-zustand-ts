@@ -11,8 +11,8 @@
  * - Calcular totais
  */
 
-import type { CartItem } from "../types";
-import { CurrencyService } from "../services/CurrencyService";
+import type { CartItem } from "../../../types";
+import { CurrencyService } from "../../../services/CurrencyService";
 import styles from "./CartDrawer.module.css";
 
 interface CartDrawerProps {
@@ -52,7 +52,7 @@ export function CartDrawer({
                 <p className={styles.cartItemInfo}>
                   {CurrencyService.formatWithQuantity(
                     item.quantity,
-                    item.price
+                    item.price,
                   )}
                 </p>
               </div>

@@ -10,8 +10,8 @@
  * - Gerenciar estado do carrinho (deixa para EventCard)
  */
 
-import { EventCard } from "./EventCard";
-import type { Event } from "../types";
+import { EventCard } from "../EventCard/EventCard";
+import type { Event } from "../../../types";
 import styles from "./EventsList.module.css";
 
 interface EventsListProps {

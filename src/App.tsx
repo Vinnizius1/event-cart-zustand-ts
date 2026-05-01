@@ -2,8 +2,8 @@
 import styles from "./App.module.css";
 
 // --- Components ---
-import { EventsList } from "./components/EventsList";
-import { CartDrawer } from "./components/CartDrawer";
+import { EventsList } from "./components/events";
+import { CartDrawer } from "./components/cart";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 
 // --- Data ---
