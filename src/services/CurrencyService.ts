@@ -7,11 +7,18 @@
  * - Facilita testes
  */
 
+// Intl.NumberFormat é uma API nativa do JavaScript para formatação de números, incluindo moedas.
+// O Intl.NumberFormat é um Construtor. Quando você faz new Intl.NumberFormat(),
+// ele retorna um objeto de instância. Esse objeto possui um método chamado format.
 const BRL_FORMATTER = new Intl.NumberFormat("pt-BR", {
   style: "currency",
   currency: "BRL",
 });
 
+/**
+ * OPÇÃO A: PADRÃO DE OBJETO (Service Pattern)
+ * Ideal para: Organização, Descoberta de código (IntelliSense) e Mocking em testes.
+ */
 export const CurrencyService = {
   /**
    * Formata um número para moeda brasileira
@@ -32,3 +39,27 @@ export const CurrencyService = {
     return `${quantity}x ${this.format(price)}`;
   },
 };
+
+/**
+ * OPÇÃO B: FUNÇÕES NOMEADAS (Named Exports)
+ * Ideal para: Tree Shaking (redução de tamanho do bundle) e utilitários genéricos.
+ */
+
+/**
+ * Formata um número para moeda brasileira
+ * @example formatCurrency(350) -> "R$ 350,00"
+ */
+export function formatCurrency(value: number): string {
+  return BRL_FORMATTER.format(value);
+}
+
+/**
+ * Formata um número com quantidade
+ * @example formatCurrencyWithQuantity(2, 350) -> "2x R$ 350,00"
+ */
+export function formatCurrencyWithQuantity(
+  quantity: number,
+  price: number,
+): string {
+  return `${quantity}x ${formatCurrency(price)}`;
+}
