@@ -76,6 +76,17 @@ describe("useCartStore", () => {
     expect(useCartStore.getState().items).toHaveLength(2);
   });
 
+  it("addToCart não deve permitir adicionar mais itens do que o disponível (availableQty)", () => {
+    const limitedEvent = { ...mockEvent, availableQty: 2 };
+
+    useCartStore.getState().addToCart(limitedEvent); // Quantidade: 1
+    useCartStore.getState().addToCart(limitedEvent); // Quantidade: 2
+    useCartStore.getState().addToCart(limitedEvent); // Tentativa de Quantidade: 3 (deve bloquear)
+
+    const { items } = useCartStore.getState();
+    expect(items[0].quantity).toBe(2);
+  });
+
   // ── removeFromCart ────────────────────────────────────────
   it("removeFromCart deve remover o item pelo id", () => {
     useCartStore.getState().addToCart(mockEvent);

@@ -1,12 +1,3 @@
-/**
- * CurrencyService - Centraliza toda lógica de formatação de moeda
- *
- * PRINCÍPIO: Single Responsibility
- * - Apenas uma razão para mudar: se mudarmos a estratégia de formatação
- * - Reutilizável em todo o app
- * - Facilita testes
- */
-
 // Intl.NumberFormat é uma API nativa do JavaScript para formatação de números, incluindo moedas.
 // O Intl.NumberFormat é um Construtor. Quando você faz new Intl.NumberFormat(),
 // ele retorna um objeto de instância. Esse objeto possui um método chamado format.
@@ -16,6 +7,13 @@ const BRL_FORMATTER = new Intl.NumberFormat("pt-BR", {
 });
 
 /**
+ * CurrencyService - Centraliza toda lógica de formatação de moeda
+ *
+ * PRINCÍPIO: Single Responsibility
+ * - Apenas uma razão para mudar: se mudarmos a estratégia de formatação
+ * - Reutilizável em todo o app
+ * - Facilita testes unitários (mocking)
+ *
  * OPÇÃO A: PADRÃO DE OBJETO (Service Pattern)
  * Ideal para: Organização, Descoberta de código (IntelliSense) e Mocking em testes.
  */
@@ -43,9 +41,9 @@ export const CurrencyService = {
 /**
  * OPÇÃO B: FUNÇÕES NOMEADAS (Named Exports)
  * Ideal para: Tree Shaking (redução de tamanho do bundle) e utilitários genéricos.
- */
-
-/**
+ * Vantagem: Permite importar apenas o que é necessário, potencialmente reduzindo o tamanho do bundle.
+ * Desvantagem: Menos organizado, pode ser difícil descobrir quais funções estão disponíveis.
+ *
  * Formata um número para moeda brasileira
  * @example formatCurrency(350) -> "R$ 350,00"
  */

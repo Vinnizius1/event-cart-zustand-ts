@@ -27,6 +27,9 @@ export const useCartStore = create<CartState>((set, get) => ({
 
       // 2. Se já existe, só aumenta a quantidade (+1)
       if (existingItem) {
+        // Validação de estoque: não permite ultrapassar o disponível
+        if (existingItem.quantity >= event.availableQty) return state;
+
         return {
           items: state.items.map((item) =>
             item.id === event.id
@@ -35,6 +38,9 @@ export const useCartStore = create<CartState>((set, get) => ({
           ),
         };
       }
+
+      // Se não existe no carrinho, mas o estoque está zerado, não adiciona
+      if (event.availableQty <= 0) return state;
 
       // 3. Se não existe, adiciona o evento novo com quantidade 1
       return {
