@@ -24,6 +24,8 @@ export class ErrorBoundary extends Component<Props, State> {
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error("Uncaught error:", error, errorInfo);
+    // Sugestão: Aqui você integraria com Sentry, NewRelic ou Datadog
+    // Example: Sentry.captureException(error, { extra: errorInfo });
   }
 
   /**

@@ -13,22 +13,20 @@ import { EVENTS } from "./data/mockEvents";
 import { useCartFacade } from "./facade/CartFacade";
 
 /**
- * App - Componente Orquestrador (Container Component)
+ * Componente Orquestrador Principal (Container Component).
  *
- * RESPONSABILIDADES:
- * - Renderizar layout principal (header, main, aside)
- * - Orquestrar componentes filhos
- * - Gerenciar estado através do Facade
+ * @component
+ * @description Responsável por definir o layout estrutural da aplicação e mediar a comunicação
+ * entre o estado global (via CartFacade) e os componentes de visualização.
  *
- * NÃO FAZ:
- * - Cálculos complexos
- * - Formatação de dados
- * - Lógica de negócio específica
+ * **Responsabilidades:**
+ * - Renderizar o shell da aplicação (header, main, aside).
+ * - Injetar dados e callbacks nos componentes `EventsList` e `CartDrawer`.
  *
- * PADRÕES APLICADOS:
- * - Container/Presentational Pattern
- * - Facade Pattern (CartFacade abstrai complexidade)
- * - Separation of Concerns
+ * **Padrões Aplicados:**
+ * - Facade Pattern: Para isolar a lógica da Store (Zustand).
+ * - Container/Presentational Pattern: Atuando como o "Smart Component".
+ * - Error Boundary: Garantindo a resiliência da UI.
  */
 function App() {
   // Uma única source of truth para lógica do carrinho

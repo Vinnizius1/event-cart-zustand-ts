@@ -1,4 +1,3 @@
-// src/store/useCartStore.ts
 import { create } from "zustand";
 import type { CartState } from "../types";
 
